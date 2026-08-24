@@ -3,523 +3,310 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Simulados para concursos em Angola - Análises Clínicas, Cultura Geral, Ética, Censo 2024, IIMS e Inteligência Artificial">
+
 <title>Academia Concurso Angola</title>
 
 <style>
+
 *{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f3f6fa;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f1f5f9;
     color:#172033;
-    min-height:100vh;
 }
 
 header{
-    background:linear-gradient(135deg,#063970,#0b6e4f);
+    background:#075985;
     color:white;
-    padding:25px 15px;
     text-align:center;
+    padding:25px 15px;
 }
 
 header h1{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-header p{
-    opacity:.9;
+    margin:0 0 8px;
 }
 
 .container{
-    max-width:1100px;
+    max-width:900px;
     margin:auto;
     padding:20px;
 }
 
-.menu{
+h2{
+    margin-top:10px;
+}
+
+.categorias{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
     gap:15px;
     margin-top:20px;
 }
 
-.category{
-    border:none;
-    padding:20px 12px;
-    border-radius:14px;
+.categoria{
+    border:0;
+    border-radius:12px;
+    padding:20px 10px;
     background:white;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
     font-size:16px;
     font-weight:bold;
-    color:#172033;
-    transition:.2s;
+    cursor:pointer;
 }
 
-.category:hover{
-    transform:translateY(-3px);
-    box-shadow:0 7px 20px rgba(0,0,0,.13);
+.categoria:hover{
+    background:#e0f2fe;
 }
 
-.category span{
+.icone{
     display:block;
     font-size:35px;
     margin-bottom:10px;
 }
 
-#quiz{
+#simulado{
     display:none;
     background:white;
-    margin-top:25px;
-    padding:22px;
-    border-radius:16px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
 }
 
-.quiz-top{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
-}
-
-.badge{
-    background:#eaf4ff;
-    color:#07549b;
-    padding:8px 12px;
-    border-radius:20px;
+#pergunta{
+    font-size:20px;
     font-weight:bold;
+    margin:20px 0;
 }
 
-.timer{
-    background:#fff2f2;
-    color:#b42318;
-    padding:8px 12px;
-    border-radius:20px;
-    font-weight:bold;
-}
-
-.progress{
+.opcao{
+    display:block;
     width:100%;
-    height:9px;
-    background:#e5e7eb;
-    border-radius:10px;
-    overflow:hidden;
-    margin-bottom:20px;
-}
-
-.progress-bar{
-    height:100%;
-    width:0%;
-    background:#0b6e4f;
-    transition:.3s;
-}
-
-.question{
-    font-size:21px;
-    font-weight:bold;
-    line-height:1.45;
-    margin-bottom:18px;
-}
-
-.option{
-    width:100%;
-    text-align:left;
-    border:2px solid #e1e5eb;
-    background:white;
     padding:14px;
-    margin:8px 0;
-    border-radius:10px;
-    cursor:pointer;
+    margin:10px 0;
+    background:white;
+    border:2px solid #ddd;
+    border-radius:8px;
+    text-align:left;
     font-size:16px;
-    transition:.2s;
+    cursor:pointer;
 }
 
-.option:hover{
-    border-color:#0b6e4f;
-    background:#f3fbf7;
+.opcao:hover{
+    background:#f0f9ff;
 }
 
-.option.correct{
-    background:#dff7e8;
-    border-color:#168544;
-    color:#12632f;
+.certa{
+    background:#dcfce7 !important;
+    border-color:#16a34a !important;
 }
 
-.option.wrong{
-    background:#ffe3e3;
-    border-color:#c62828;
-    color:#a11919;
+.errada{
+    background:#fee2e2 !important;
+    border-color:#dc2626 !important;
 }
 
-.explanation{
-    margin-top:15px;
-    padding:13px;
-    background:#f5f7fa;
-    border-left:4px solid #0b6e4f;
-    border-radius:5px;
+#explicacao{
     display:none;
-    line-height:1.5;
+    margin-top:15px;
+    padding:12px;
+    background:#f8fafc;
+    border-left:4px solid #075985;
 }
 
-.buttons{
+.botoes{
     display:flex;
     gap:10px;
     margin-top:20px;
-    flex-wrap:wrap;
 }
 
 .btn{
-    border:none;
-    padding:13px 20px;
-    border-radius:9px;
+    border:0;
+    padding:12px 18px;
+    border-radius:8px;
     cursor:pointer;
     font-weight:bold;
-    font-size:15px;
 }
 
-.next{
-    background:#0b6e4f;
+.proxima{
+    background:#075985;
     color:white;
 }
 
-.back{
-    background:#e8edf2;
-    color:#172033;
+.voltar{
+    background:#e2e8f0;
 }
 
-.home{
-    background:#063970;
-    color:white;
-}
-
-#result{
+#resultado{
     display:none;
+    background:white;
+    padding:30px;
     text-align:center;
-    padding:25px 10px;
+    border-radius:12px;
+    margin-top:20px;
 }
 
-.score{
-    font-size:48px;
+.pontuacao{
+    font-size:40px;
     font-weight:bold;
-    color:#0b6e4f;
-    margin:15px;
+    color:#075985;
 }
 
-.result-message{
-    font-size:18px;
-    margin-bottom:20px;
-}
-
-footer{
-    text-align:center;
-    padding:30px 15px;
-    margin-top:40px;
-    background:#172033;
-    color:white;
-    line-height:1.6;
-}
-
-.source{
-    font-size:12px;
-    opacity:.75;
-    margin-top:8px;
-}
-
-.hidden{
-    display:none!important;
-}
-
-@media(max-width:600px){
-    header h1{
-        font-size:24px;
-    }
-
-    .container{
-        padding:12px;
-    }
-
-    #quiz{
-        padding:16px;
-    }
-
-    .question{
-        font-size:18px;
-    }
-
-    .option{
-        font-size:15px;
-    }
-}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>🎓 Academia Concurso Angola</h1>
-    <p>Plataforma de preparação e simulados</p>
+
+<h1>🎓 Academia Concurso Angola</h1>
+
+<p>Preparação para concursos e conhecimentos gerais</p>
+
 </header>
+
 
 <div class="container">
 
-    <section id="home">
+<!-- MENU -->
 
-        <h2>Escolha uma área</h2>
-        <p style="margin-top:8px;color:#667085;">
-            Escolha uma categoria para iniciar o seu simulado.
-        </p>
+<div id="inicio">
 
-        <div class="menu">
+<h2>Escolha uma categoria</h2>
 
-            <button class="category" onclick="startQuiz('analises')">
-                <span>🧪</span>
-                Análises Clínicas
-            </button>
+<div class="categorias">
 
-            <button class="category" onclick="startQuiz('cultura')">
-                <span>🌍</span>
-                Cultura Geral
-            </button>
+<button class="categoria" onclick="iniciar('analises')">
+<span class="icone">🧪</span>
+Análises Clínicas
+</button>
 
-            <button class="category" onclick="startQuiz('etica')">
-                <span>⚖️</span>
-                Ética e Deontologia
-            </button>
+<button class="categoria" onclick="iniciar('cultura')">
+<span class="icone">🌍</span>
+Cultura Geral
+</button>
 
-            <button class="category" onclick="startQuiz('censo')">
-                <span>📊</span>
-                Censo 2024
-            </button>
+<button class="categoria" onclick="iniciar('etica')">
+<span class="icone">⚖️</span>
+Ética
+</button>
 
-            <button class="category" onclick="startQuiz('iims')">
-                <span>🏥</span>
-                IIMS 2023–2024
-            </button>
+<button class="categoria" onclick="iniciar('censo')">
+<span class="icone">📊</span>
+Censo 2024
+</button>
 
-            <button class="category" onclick="startQuiz('ia')">
-                <span>🤖</span>
-                Inteligência Artificial
-            </button>
+<button class="categoria" onclick="iniciar('iims')">
+<span class="icone">🏥</span>
+IIMS
+</button>
 
-        </div>
-    </section>
-
-    <section id="quiz">
-
-        <div class="quiz-top">
-            <div class="badge" id="categoryName"></div>
-            <div class="timer">⏱️ <span id="timer">15:00</span></div>
-        </div>
-
-        <div class="progress">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <div id="questionNumber"></div>
-
-        <div class="question" id="question"></div>
-
-        <div id="options"></div>
-
-        <div class="explanation" id="explanation"></div>
-
-        <div class="buttons">
-            <button class="btn back" onclick="previousQuestion()">← Anterior</button>
-            <button class="btn next" id="nextButton" onclick="nextQuestion()">Próxima →</button>
-            <button class="btn home" onclick="goHome()">🏠 Categorias</button>
-        </div>
-
-    </section>
-
-    <section id="result">
-
-        <h2>🎉 Simulado terminado!</h2>
-
-        <div class="score" id="finalScore"></div>
-
-        <div class="result-message" id="resultMessage"></div>
-
-        <button class="btn next" onclick="restartQuiz()">
-            🔄 Fazer novamente
-        </button>
-
-        <button class="btn home" onclick="goHome()">
-            🏠 Voltar às categorias
-        </button>
-
-    </section>
+<button class="categoria" onclick="iniciar('ia')">
+<span class="icone">🤖</span>
+Inteligência Artificial
+</button>
 
 </div>
 
-<footer>
-    <strong>Academia Concurso Angola</strong>
-    <br>
-    Plataforma educativa independente para preparação de concursos.
-    <div class="source">
-        Dados estatísticos do Censo 2024 e IIMS devem ser conferidos nas fontes oficiais do INE.
-    </div>
-</footer>
+</div>
+
+
+<!-- SIMULADO -->
+
+<div id="simulado">
+
+<strong id="categoria"></strong>
+
+<div id="contador"></div>
+
+<div id="pergunta"></div>
+
+<div id="opcoes"></div>
+
+<div id="explicacao"></div>
+
+<div class="botoes">
+
+<button class="btn voltar" onclick="voltar()">
+Voltar
+</button>
+
+<button class="btn proxima" onclick="proxima()">
+Próxima
+</button>
+
+</div>
+
+</div>
+
+
+<!-- RESULTADO -->
+
+<div id="resultado">
+
+<h2>Simulado terminado!</h2>
+
+<div class="pontuacao" id="pontuacao"></div>
+
+<p id="mensagem"></p>
+
+<button class="btn proxima" onclick="inicio()">
+Voltar às categorias
+</button>
+
+</div>
+
+</div>
+
 
 <script>
 
-/* =========================================================
+/* ================================
    BANCO DE PERGUNTAS
-   ========================================================= */
+================================ */
 
-const banco = {
+const perguntas = {
 
-analises: [
+analises:[
 
 {
-q:"Qual é a principal função da hemoglobina?",
-o:[
-"Transportar oxigénio e participar no transporte de dióxido de carbono",
+pergunta:"Qual é a principal função dos eritrócitos?",
+opcoes:[
+"Transportar oxigénio",
 "Produzir anticorpos",
-"Destruir plaquetas",
-"Produzir glicose"
+"Produzir plaquetas",
+"Destruir bactérias"
 ],
-a:0,
-e:"A hemoglobina, presente nos eritrócitos, é fundamental para o transporte de oxigénio e participa no transporte de dióxido de carbono."
+resposta:0,
+explicacao:"Os eritrócitos transportam principalmente oxigénio através da hemoglobina."
 },
 
 {
-q:"Qual célula é responsável principalmente pela produção de anticorpos?",
-o:[
-"Linfócito B/plasmócito",
-"Neutrófilo",
+pergunta:"Qual célula participa principalmente na defesa do organismo?",
+opcoes:[
 "Eritrócito",
-"Plaqueta"
+"Leucócito",
+"Plaqueta",
+"Reticulócito"
 ],
-a:0,
-e:"Os linfócitos B podem diferenciar-se em plasmócitos, que produzem anticorpos."
+resposta:1,
+explicacao:"Os leucócitos participam nas respostas imunológicas e na defesa do organismo."
 },
 
 {
-q:"Qual é a principal função das plaquetas?",
-o:[
-"Coagulação e hemostasia",
-"Transporte de oxigénio",
-"Produção de anticorpos",
-"Digestão de proteínas"
-],
-a:0,
-e:"As plaquetas participam ativamente na hemostasia e na formação do tampão plaquetário."
-},
-
-{
-q:"Qual exame é utilizado para avaliar principalmente a via extrínseca da coagulação?",
-o:[
-"Tempo de protrombina (TP)",
-"Contagem de eritrócitos",
-"VDRL",
-"Urina II"
-],
-a:0,
-e:"O TP avalia principalmente a via extrínseca e a via comum da coagulação."
-},
-
-{
-q:"Qual componente do sangue é responsável principalmente pela defesa celular contra agentes infecciosos?",
-o:[
-"Leucócitos",
-"Eritrócitos",
-"Plaquetas",
-"Albumina"
-],
-a:0,
-e:"Os leucócitos desempenham funções essenciais na resposta imunológica."
-},
-
-{
-q:"Uma redução do número de eritrócitos, geralmente acompanhada de redução da hemoglobina, pode indicar:",
-o:[
-"Anemia",
-"Leucocitose",
-"Trombocitose",
-"Policitemia"
-],
-a:0,
-e:"Anemia é caracterizada por redução da massa eritrocitária e/ou da concentração de hemoglobina, conforme os critérios laboratoriais utilizados."
-},
-
-{
-q:"Qual é a principal finalidade da centrifugação de uma amostra de sangue?",
-o:[
-"Separar componentes segundo a densidade",
-"Destruir todas as bactérias",
-"Produzir anticorpos",
-"Aumentar a glicemia"
-],
-a:0,
-e:"A centrifugação permite separar componentes da amostra de acordo com suas diferentes densidades."
-},
-
-{
-q:"Qual destes é um exemplo de bactéria Gram-negativa?",
-o:[
-"Escherichia coli",
-"Staphylococcus aureus",
-"Streptococcus pyogenes",
-"Streptococcus pneumoniae"
-],
-a:0,
-e:"Escherichia coli é uma bactéria Gram-negativa."
-},
-
-{
-q:"O exame de urina pode fornecer informações sobre:",
-o:[
-"Função renal e alterações do trato urinário",
-"Somente a função cardíaca",
-"Somente a coagulação",
-"Somente a função pulmonar"
-],
-a:0,
-e:"A análise de urina pode fornecer informações importantes sobre o sistema urinário, metabolismo e várias condições clínicas."
-},
-
-{
-q:"Qual método é utilizado para observar microrganismos ou estruturas que não podem ser vistos adequadamente a olho nu?",
-o:[
-"Microscopia",
-"Destilação",
-"Filtração simples",
-"Decantação"
-],
-a:0,
-e:"A microscopia amplia estruturas microscópicas permitindo sua observação e análise."
-},
-
-{
-q:"O leucograma faz parte de qual exame laboratorial?",
-o:[
+pergunta:"Qual exame avalia os elementos celulares do sangue?",
+opcoes:[
 "Hemograma",
 "Urinálise",
-"Coprocultura",
-"Espermograma"
+"Coprologia",
+"Espermatograma"
 ],
-a:0,
-e:"O hemograma inclui a avaliação dos eritrócitos, leucócitos e plaquetas, entre outros parâmetros."
-},
-
-{
-q:"Qual parâmetro está diretamente relacionado à concentração de hemoglobina no sangue?",
-o:[
-"Hemoglobina",
-"Leucócitos",
-"Plaquetas",
-"Basófilos"
-],
-a:0,
-e:"A concentração de hemoglobina é um dos principais parâmetros avaliados no eritrograma."
+resposta:0,
+explicacao:"O hemograma avalia principalmente eritrócitos, leucócitos e plaquetas."
 }
 
 ],
@@ -527,99 +314,27 @@ e:"A concentração de hemoglobina é um dos principais parâmetros avaliados no
 cultura:[
 
 {
-q:"Qual é a capital de Angola?",
-o:[
+pergunta:"Qual é a capital de Angola?",
+opcoes:[
 "Luanda",
-"Huambo",
 "Lubango",
+"Huambo",
 "Benguela"
 ],
-a:0,
-e:"Luanda é a capital da República de Angola."
+resposta:0,
+explicacao:"Luanda é a capital de Angola."
 },
 
 {
-q:"Qual é a moeda oficial de Angola?",
-o:[
-"Kwanza",
+pergunta:"Qual é a moeda oficial de Angola?",
+opcoes:[
 "Metical",
+"Kwanza",
 "Rand",
 "Euro"
 ],
-a:0,
-e:"A moeda oficial de Angola é o Kwanza (AOA)."
-},
-
-{
-q:"Em que continente está localizada Angola?",
-o:[
-"África",
-"Ásia",
-"Europa",
-"América do Sul"
-],
-a:0,
-e:"Angola está localizada na África, na região austral do continente."
-},
-
-{
-q:"Qual oceano banha a costa de Angola?",
-o:[
-"Atlântico",
-"Índico",
-"Pacífico",
-"Ártico"
-],
-a:0,
-e:"Angola possui uma extensa costa banhada pelo Oceano Atlântico."
-},
-
-{
-q:"Qual é a língua oficial de Angola?",
-o:[
-"Português",
-"Inglês",
-"Francês",
-"Espanhol"
-],
-a:0,
-e:"O português é a língua oficial de Angola."
-},
-
-{
-q:"Qual é o órgão legislativo de Angola?",
-o:[
-"Assembleia Nacional",
-"Tribunal Supremo",
-"Banco Nacional de Angola",
-"Administração Municipal"
-],
-a:0,
-e:"A Assembleia Nacional exerce o poder legislativo nos termos da Constituição."
-},
-
-{
-q:"Qual destes é um dos objetivos fundamentais de um censo populacional?",
-o:[
-"Produzir informações sobre a população e suas características",
-"Substituir eleições",
-"Emitir moeda",
-"Controlar bancos"
-],
-a:0,
-e:"Os censos produzem informações demográficas e socioeconómicas fundamentais para o planeamento."
-},
-
-{
-q:"Qual é a importância das estatísticas oficiais?",
-o:[
-"Apoiar decisões e políticas públicas baseadas em evidências",
-"Eliminar todas as pesquisas",
-"Substituir a Constituição",
-"Determinar opiniões pessoais"
-],
-a:0,
-e:"As estatísticas oficiais ajudam governos e instituições a compreender a realidade e planear políticas."
+resposta:1,
+explicacao:"O Kwanza é a moeda oficial de Angola."
 }
 
 ],
@@ -627,63 +342,27 @@ e:"As estatísticas oficiais ajudam governos e instituições a compreender a re
 etica:[
 
 {
-q:"O que significa sigilo profissional?",
-o:[
-"Proteger informações confidenciais obtidas no exercício profissional",
-"Publicar todos os resultados dos pacientes",
-"Partilhar dados com qualquer pessoa",
-"Eliminar todos os registos"
+pergunta:"O que significa sigilo profissional?",
+opcoes:[
+"Divulgar informações dos pacientes",
+"Proteger informações confidenciais",
+"Publicar resultados laboratoriais",
+"Partilhar informações com qualquer pessoa"
 ],
-a:0,
-e:"O sigilo profissional exige proteção das informações confidenciais dos pacientes, observando as normas legais e profissionais."
+resposta:1,
+explicacao:"O sigilo profissional exige proteção das informações confidenciais obtidas no exercício profissional."
 },
 
 {
-q:"Qual princípio exige respeito pela dignidade do paciente?",
-o:[
-"Respeito pela pessoa",
-"Negligência",
-"Discriminação",
-"Imprudência"
+pergunta:"A ética profissional orienta principalmente:",
+opcoes:[
+"A conduta do profissional",
+"O preço dos medicamentos",
+"A decoração do laboratório",
+"A publicidade"
 ],
-a:0,
-e:"O respeito pela dignidade é um princípio fundamental da assistência em saúde."
-},
-
-{
-q:"Um profissional que falsifica deliberadamente um resultado laboratorial viola principalmente:",
-o:[
-"Integridade profissional",
-"Organização do laboratório",
-"Publicidade",
-"Decoração"
-],
-a:0,
-e:"A falsificação de resultados compromete a integridade, a segurança do paciente e a confiança no serviço."
-},
-
-{
-q:"A ética profissional ajuda o trabalhador a:",
-o:[
-"Orientar sua conduta profissional",
-"Evitar qualquer responsabilidade",
-"Alterar resultados",
-"Divulgar informações confidenciais"
-],
-a:0,
-e:"A ética orienta a conduta profissional e a tomada de decisões responsáveis."
-},
-
-{
-q:"O tratamento diferente de pacientes por causa da sua origem ou condição social pode caracterizar:",
-o:[
-"Discriminação",
-"Sigilo",
-"Beneficência",
-"Consentimento"
-],
-a:0,
-e:"A discriminação é incompatível com os princípios de igualdade e respeito na prestação de cuidados."
+resposta:0,
+explicacao:"A ética profissional ajuda a orientar decisões e comportamentos responsáveis."
 }
 
 ],
@@ -691,99 +370,15 @@ e:"A discriminação é incompatível com os princípios de igualdade e respeito
 censo:[
 
 {
-q:"Segundo os resultados definitivos do Censo 2024, qual era a população residente de Angola em 19 de Setembro de 2024?",
-o:[
-"36 604 681 habitantes",
-"25 789 024 habitantes",
-"40 000 000 habitantes",
-"30 500 000 habitantes"
-],
-a:0,
-e:"Segundo o INE, Angola tinha 36 604 681 habitantes no momento censitário de 19 de Setembro de 2024."
-},
-
-{
-q:"Segundo o Censo 2024, qual sexo representava aproximadamente 51% da população de Angola?",
-o:[
-"Mulheres",
-"Homens",
-"Ambos exatamente 50%",
-"Crianças"
-],
-a:0,
-e:"Os resultados definitivos indicam 18 672 696 mulheres, correspondendo a cerca de 51% da população."
-},
-
-{
-q:"Segundo o Censo 2024, qual província tinha a maior população?",
-o:[
-"Luanda",
-"Huíla",
-"Huambo",
-"Benguela"
-],
-a:0,
-e:"Luanda era a província mais populosa, representando cerca de 24,1% da população nacional."
-},
-
-{
-q:"Qual era aproximadamente a percentagem da população de Angola residente em área urbana em 2024?",
-o:[
-"65,5%",
-"35,5%",
-"50%",
-"80%"
-],
-a:0,
-e:"Os resultados definitivos do Censo 2024 indicam 23 991 388 habitantes em áreas urbanas, equivalentes a 65,5% da população."
-},
-
-{
-q:"Quantos homens foram contabilizados no Censo 2024?",
-o:[
-"17 931 985",
-"18 672 696",
+pergunta:"Segundo o Censo 2024, qual era a população residente de Angola?",
+opcoes:[
 "36 604 681",
-"23 991 388"
+"20 000 000",
+"50 000 000",
+"15 000 000"
 ],
-a:0,
-e:"O Censo 2024 contabilizou 17 931 985 homens."
-},
-
-{
-q:"Quantas mulheres foram contabilizadas no Censo 2024?",
-o:[
-"18 672 696",
-"17 931 985",
-"12 613 293",
-"23 991 388"
-],
-a:0,
-e:"O Censo 2024 contabilizou 18 672 696 mulheres."
-},
-
-{
-q:"Comparando 2014 e 2024, o Censo registou um aumento da população residente de aproximadamente:",
-o:[
-"10 815 656 habitantes",
-"2 000 000 habitantes",
-"5 000 000 habitantes",
-"20 000 000 habitantes"
-],
-a:0,
-e:"A população aumentou em 10 815 656 habitantes entre os dois censos."
-},
-
-{
-q:"Segundo o Censo 2024, qual província representava aproximadamente 9% da população nacional?",
-o:[
-"Huíla",
-"Luanda",
-"Huambo",
-"Cunene"
-],
-a:0,
-e:"A Huíla representava aproximadamente 9,0% da população nacional."
+resposta:0,
+explicacao:"Segundo os resultados definitivos do Censo 2024, Angola tinha 36 604 681 habitantes."
 }
 
 ],
@@ -791,75 +386,15 @@ e:"A Huíla representava aproximadamente 9,0% da população nacional."
 iims:[
 
 {
-q:"O que significa IIMS?",
-o:[
+pergunta:"O que significa IIMS?",
+opcoes:[
 "Inquérito de Indicadores Múltiplos e de Saúde",
 "Instituto Internacional de Medicina Social",
-"Inquérito Internacional de Mortalidade Sanitária",
-"Índice Integrado de Medicina e Saúde"
+"Índice Integrado de Medicina Sanitária",
+"Inquérito Internacional de Medicina"
 ],
-a:0,
-e:"IIMS significa Inquérito de Indicadores Múltiplos e de Saúde."
-},
-
-{
-q:"Quem coordenou o IIMS 2023–2024 em Angola?",
-o:[
-"INE em colaboração com o MINSA",
-"Somente bancos comerciais",
-"Somente escolas",
-"Somente empresas privadas"
-],
-a:0,
-e:"O IIMS 2023–2024 foi implementado pelo INE em parceria com o MINSA, com apoio técnico e financeiro de parceiros."
-},
-
-{
-q:"O IIMS 2023–2024 fornece informações sobre:",
-o:[
-"Saúde, demografia, nutrição, educação e condições de vida, entre outros temas",
-"Somente futebol",
-"Somente comércio",
-"Somente transporte"
-],
-a:0,
-e:"O IIMS reúne diversos indicadores demográficos e sociais, incluindo saúde materno-infantil, nutrição, educação e condições de vida."
-},
-
-{
-q:"Qual é uma das áreas abordadas pelo IIMS 2023–2024?",
-o:[
-"Saúde materna e infantil",
-"Somente mineração",
-"Somente aviação",
-"Somente telecomunicações"
-],
-a:0,
-e:"O IIMS inclui indicadores relacionados com saúde materna e infantil."
-},
-
-{
-q:"O IIMS 2023–2024 é importante porque:",
-o:[
-"Produz evidências para compreender indicadores sociais e de saúde",
-"Substitui todos os hospitais",
-"Elimina a necessidade de estatísticas",
-"Serve apenas para fins comerciais"
-],
-a:0,
-e:"Os dados do IIMS apoiam o planeamento, monitorização e avaliação de políticas e programas."
-},
-
-{
-q:"Qual instituição é responsável pela produção das estatísticas oficiais de Angola?",
-o:[
-"Instituto Nacional de Estatística (INE)",
-"Banco privado",
-"Clube desportivo",
-"Empresa de telecomunicações"
-],
-a:0,
-e:"O INE é a instituição responsável pela produção e divulgação das estatísticas oficiais de Angola."
+resposta:0,
+explicacao:"IIMS significa Inquérito de Indicadores Múltiplos e de Saúde."
 }
 
 ],
@@ -867,99 +402,27 @@ e:"O INE é a instituição responsável pela produção e divulgação das esta
 ia:[
 
 {
-q:"O que significa IA?",
-o:[
-"Inteligência Artificial",
+pergunta:"O que significa IA?",
+opcoes:[
 "Informação Administrativa",
+"Inteligência Artificial",
 "Internet Avançada",
 "Inteligência Analógica"
 ],
-a:0,
-e:"IA é a abreviação de Inteligência Artificial."
+resposta:1,
+explicacao:"IA significa Inteligência Artificial."
 },
 
 {
-q:"O que é aprendizagem automática (machine learning)?",
-o:[
-"Uma área da IA em que sistemas aprendem padrões a partir de dados",
-"Um tipo de microscópio",
-"Um sistema exclusivamente manual",
-"Uma técnica de impressão"
-],
-a:0,
-e:"Machine learning permite que algoritmos aprendam padrões a partir de dados para realizar tarefas ou fazer previsões."
-},
-
-{
-q:"Qual é um exemplo de IA generativa?",
-o:[
-"Um sistema que gera texto ou imagens a partir de instruções",
-"Uma calculadora simples",
-"Uma lâmpada comum",
-"Uma régua"
-],
-a:0,
-e:"IA generativa pode criar conteúdo novo, como texto, imagens, áudio ou código, a partir de instruções."
-},
-
-{
-q:"Por que é importante verificar informações produzidas por uma IA?",
-o:[
-"Porque sistemas de IA podem produzir informações incorretas",
+pergunta:"Por que devemos verificar informações produzidas por uma IA?",
+opcoes:[
+"Porque uma IA pode cometer erros",
 "Porque IA nunca funciona",
 "Porque computadores não usam dados",
-"Porque toda IA é sempre falsa"
+"Porque toda IA é falsa"
 ],
-a:0,
-e:"Modelos de IA podem cometer erros ou produzir informações incorretas. A verificação humana continua sendo importante."
-},
-
-{
-q:"Na área da saúde, a IA pode ser usada para:",
-o:[
-"Apoiar análise de dados, investigação e processos clínicos",
-"Substituir automaticamente todos os profissionais",
-"Eliminar todos os exames",
-"Dispensar protocolos"
-],
-a:0,
-e:"A IA pode apoiar profissionais em várias tarefas, mas não elimina a necessidade de julgamento profissional, validação e responsabilidade."
-},
-
-{
-q:"O que é um dado pessoal?",
-o:[
-"Informação relacionada a uma pessoa identificada ou identificável",
-"Qualquer número aleatório",
-"Somente uma fotografia pública",
-"Somente uma senha de Wi-Fi"
-],
-a:0,
-e:"Dados pessoais são informações relacionadas a uma pessoa identificada ou identificável."
-},
-
-{
-q:"Qual é um risco do uso irresponsável de IA?",
-o:[
-"Disseminação de informação falsa e decisões inadequadas",
-"Melhor organização",
-"Maior produtividade",
-"Automatização"
-],
-a:0,
-e:"O uso irresponsável pode contribuir para desinformação, discriminação, violações de privacidade e decisões inadequadas."
-},
-
-{
-q:"O que significa viés (bias) em um sistema de IA?",
-o:[
-"Uma tendência sistemática que pode prejudicar a imparcialidade dos resultados",
-"Uma atualização do computador",
-"Um tipo de vírus exclusivamente biológico",
-"Um cabo de rede"
-],
-a:0,
-e:"Viés pode surgir dos dados, métodos ou decisões usadas no desenvolvimento de um sistema e afetar os resultados."
+resposta:0,
+explicacao:"Sistemas de IA podem produzir informações incorretas ou inadequadas, por isso a verificação humana é importante."
 }
 
 ]
@@ -967,6 +430,238 @@ e:"Viés pode surgir dos dados, métodos ou decisões usadas no desenvolvimento 
 };
 
 
-/* =========================================================
-   CONFIGURAÇÃO
-   ========================
+/* ================================
+   VARIÁVEIS
+================================ */
+
+let categoriaAtual="";
+let lista=[];
+let numero=0;
+let pontos=0;
+let respondeu=false;
+
+
+/* ================================
+   INICIAR
+================================ */
+
+function iniciar(categoria){
+
+categoriaAtual=categoria;
+
+lista=perguntas[categoria];
+
+numero=0;
+
+pontos=0;
+
+respondeu=false;
+
+document.getElementById("inicio").style.display="none";
+
+document.getElementById("resultado").style.display="none";
+
+document.getElementById("simulado").style.display="block";
+
+document.getElementById("categoria").innerText=
+"Categoria: "+categoria;
+
+mostrar();
+
+}
+
+
+/* ================================
+   MOSTRAR PERGUNTA
+================================ */
+
+function mostrar(){
+
+let atual=lista[numero];
+
+document.getElementById("contador").innerText=
+"Questão "+(numero+1)+" de "+lista.length;
+
+document.getElementById("pergunta").innerText=
+atual.pergunta;
+
+let area=document.getElementById("opcoes");
+
+area.innerHTML="";
+
+document.getElementById("explicacao").style.display="none";
+
+atual.opcoes.forEach(function(opcao,index){
+
+let botao=document.createElement("button");
+
+botao.className="opcao";
+
+botao.innerText=
+String.fromCharCode(65+index)+") "+opcao;
+
+botao.onclick=function(){
+
+responder(index);
+
+};
+
+area.appendChild(botao);
+
+});
+
+}
+
+
+/* ================================
+   RESPONDER
+================================ */
+
+function responder(escolha){
+
+if(respondeu){
+return;
+}
+
+respondeu=true;
+
+let atual=lista[numero];
+
+let botoes=
+document.querySelectorAll(".opcao");
+
+botoes.forEach(function(botao,index){
+
+botao.disabled=true;
+
+if(index===atual.resposta){
+
+botao.classList.add("certa");
+
+}
+
+if(index===escolha && escolha!==atual.resposta){
+
+botao.classList.add("errada");
+
+}
+
+});
+
+
+if(escolha===atual.resposta){
+
+pontos++;
+
+}
+
+
+let explicacao=
+document.getElementById("explicacao");
+
+explicacao.innerText=
+"💡 "+atual.explicacao;
+
+explicacao.style.display="block";
+
+}
+
+
+/* ================================
+   PRÓXIMA
+================================ */
+
+function proxima(){
+
+if(!respondeu){
+
+alert("Escolha uma resposta primeiro.");
+
+return;
+
+}
+
+if(numero<lista.length-1){
+
+numero++;
+
+respondeu=false;
+
+mostrar();
+
+}else{
+
+finalizar();
+
+}
+
+}
+
+
+/* ================================
+   VOLTAR
+================================ */
+
+function voltar(){
+
+document.getElementById("simulado").style.display="none";
+
+document.getElementById("inicio").style.display="block";
+
+}
+
+
+/* ================================
+   FINALIZAR
+================================ */
+
+function finalizar(){
+
+document.getElementById("simulado").style.display="none";
+
+document.getElementById("resultado").style.display="block";
+
+let total=lista.length;
+
+let percentagem=
+Math.round((pontos/total)*100);
+
+document.getElementById("pontuacao").innerText=
+pontos+" / "+total+" ("+percentagem+"%)";
+
+if(percentagem>=80){
+
+document.getElementById("mensagem").innerText=
+"Excelente desempenho!";
+
+}else if(percentagem>=60){
+
+document.getElementById("mensagem").innerText=
+"Bom desempenho. Continue a estudar.";
+
+}else{
+
+document.getElementById("mensagem").innerText=
+"Precisa reforçar os estudos e tentar novamente.";
+
+}
+
+}
+
+
+/* ================================
+   INÍCIO
+================================ */
+
+function inicio(){
+
+document.getElementById("resultado").style.display="none";
+
+document.getElementById("inicio").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
