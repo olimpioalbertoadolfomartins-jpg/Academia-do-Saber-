@@ -1,24 +1,665 @@
-document.getElementById("minint").classList.remove("active");
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academia do Saber O.Martins</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#064e3b,#075985);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.main-btn{
+    border:0;
+    padding:30px 15px;
+    border-radius:15px;
+    background:white;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+    font-size:18px;
+    font-weight:bold;
+}
+
+.main-btn:hover{
+    background:#ecfdf5;
+}
+
+.icon{
+    display:block;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.submenu{
+    display:none;
+}
+
+.course{
+    display:block;
+    width:100%;
+    padding:18px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:#f8fafc;
+    text-align:left;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.course:hover{
+    background:#e0f2fe;
+}
+
+.quiz{
+    display:none;
+}
+
+.question{
+    font-size:21px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+.option{
+    display:block;
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border:2px solid #ddd;
+    border-radius:10px;
+    background:white;
+    text-align:left;
+    font-size:16px;
+}
+
+.correct{
+    background:#dcfce7!important;
+    border-color:#16a34a!important;
+}
+
+.wrong{
+    background:#fee2e2!important;
+    border-color:#dc2626!important;
+}
+
+.explanation{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    background:#f1f5f9;
+    border-left:5px solid #075985;
+}
+
+.back{
+    padding:10px 15px;
+    border:0;
+    border-radius:8px;
+    background:#e2e8f0;
+    font-weight:bold;
+}
+
+.next{
+    padding:12px 20px;
+    border:0;
+    border-radius:8px;
+    background:#075985;
+    color:white;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🎓 Academia do Saber O.Martins</h1>
+<p>Concursos Públicos — Angola</p>
+</header>
+
+<div class="container">
+
+<section id="inicio" class="card">
+
+<h2>Escolha o concurso</h2>
+
+<div class="menu">
+
+<button class="main-btn" onclick="abrirMinsa()">
+<span class="icon">🏥</span>
+MINSA
+<br>
+<small>Ministério da Saúde</small>
+</button>
+
+<button class="main-btn" onclick="abrirMinint()">
+<span class="icon">🛡️</span>
+MININT
+<br>
+<small>Ministério do Interior</small>
+</button>
+
+</div>
+
+</section>
+
+
+<section id="minsa" class="card submenu">
+
+<button class="back" onclick="inicio()">← Voltar</button>
+
+<h2>🏥 MINSA — Ministério da Saúde</h2>
+
+<button class="course" onclick="abrirQuiz('analises')">
+🧪 Análises Clínicas
+</button>
+
+<button class="course" onclick="abrirQuiz('enfermagem')">
+👩‍⚕️ Enfermagem
+</button>
+
+<button class="course" onclick="abrirQuiz('farmacia')">
+💊 Farmácia
+</button>
+
+<button class="course" onclick="abrirQuiz('fisioterapia')">
+🦴 Fisioterapia
+</button>
+
+<button class="course" onclick="abrirQuiz('maqueiro')">
+🚑 Maqueiro
+</button>
+
+<button class="course" onclick="abrirQuiz('secretariado')">
+📋 Secretariado Clínico
+</button>
+
+<hr>
+
+<h3>📚 Temas gerais</h3>
+
+<button class="course" onclick="abrirQuiz('cultura')">
+🌍 Cultura Geral
+</button>
+
+<button class="course" onclick="abrirQuiz('etica')">
+⚖️ Ética e Deontologia
+</button>
+
+<button class="course" onclick="abrirQuiz('divisao')">
+🗺️ Nova Divisão Política
+</button>
+
+<button class="course" onclick="abrirQuiz('censo')">
+📊 Censo 2024
+</button>
+
+<button class="course" onclick="abrirQuiz('iims')">
+🏥 IIMS 2023–2024
+</button>
+
+<button class="course" onclick="abrirQuiz('ia')">
+🤖 Inteligência Artificial na Saúde
+</button>
+
+</section>
+
+
+<section id="minint" class="card submenu">
+
+<button class="back" onclick="inicio()">← Voltar</button>
+
+<h2>🛡️ MININT — Ministério do Interior</h2>
+
+<button class="course" onclick="abrirQuiz('minint')">
+📝 Simulado Geral do MININT
+</button>
+
+</section>
+
+
+<section id="quiz" class="card quiz">
+
+<button class="back" onclick="voltarMenu()">← Categorias</button>
+
+<h3 id="titulo"></h3>
+
+<p id="contador"></p>
+
+<div class="question" id="pergunta"></div>
+
+<div id="opcoes"></div>
+
+<div class="explanation" id="explicacao"></div>
+
+<br>
+
+<button class="next" onclick="proxima()">
+Próxima →
+</button>
+
+</section>
+
+</div>
+
+
+<script>
+
+const banco = {
+
+analises:[
+{
+q:"Qual é a principal função dos eritrócitos?",
+o:[
+"Transportar oxigénio",
+"Produzir anticorpos",
+"Produzir plaquetas",
+"Destruir bactérias"
+],
+a:0,
+e:"Os eritrócitos transportam oxigénio principalmente através da hemoglobina."
+}
+],
+
+enfermagem:[
+{
+q:"Qual é uma função fundamental da enfermagem?",
+o:[
+"Prestar cuidados de saúde",
+"Emitir moeda",
+"Construir estradas",
+"Administrar bancos"
+],
+a:0,
+e:"A enfermagem participa dos cuidados de saúde."
+}
+],
+
+farmacia:[
+{
+q:"Qual é uma função do profissional de farmácia?",
+o:[
+"Dispensar medicamentos adequadamente",
+"Construir estradas",
+"Emitir documentos",
+"Controlar eleições"
+],
+a:0,
+e:"A dispensa segura de medicamentos é uma atividade farmacêutica."
+}
+],
+
+fisioterapia:[
+{
+q:"A fisioterapia atua principalmente na:",
+o:[
+"Promoção e recuperação do movimento e função",
+"Produção de sangue",
+"Fabricação de vacinas",
+"Emissão de documentos"
+],
+a:0,
+e:"A fisioterapia atua na prevenção e reabilitação."
+}
+],
+
+maqueiro:[
+{
+q:"Uma responsabilidade do maqueiro hospitalar é:",
+o:[
+"Transportar pacientes com segurança",
+"Prescrever medicamentos",
+"Fazer diagnósticos",
+"Interpretar hemogramas"
+],
+a:0,
+e:"O transporte seguro de pacientes é uma função importante do maqueiro."
+}
+],
+
+secretariado:[
+{
+q:"O sigilo é importante no secretariado clínico porque:",
+o:[
+"Protege informações dos pacientes",
+"Permite divulgar prontuários",
+"Substitui médicos",
+"Elimina documentos"
+],
+a:0,
+e:"O secretariado clínico deve proteger informações confidenciais."
+}
+],
+
+cultura:[
+{
+q:"Qual é a capital de Angola?",
+o:[
+"Luanda",
+"Lubango",
+"Huambo",
+"Benguela"
+],
+a:0,
+e:"Luanda é a capital de Angola."
+}
+],
+
+etica:[
+{
+q:"O que significa sigilo profissional?",
+o:[
+"Proteger informações confidenciais",
+"Divulgar dados",
+"Publicar prontuários",
+"Partilhar tudo com qualquer pessoa"
+],
+a:0,
+e:"O sigilo profissional protege informações confidenciais."
+}
+],
+
+divisao:[
+{
+q:"Segundo a nova Divisão Político-Administrativa, quantas províncias existem?",
+o:[
+"18",
+"21",
+"24",
+"26"
+],
+a:1,
+e:"A nova organização territorial passou a compreender 21 províncias."
+}
+],
+
+censo:[
+{
+q:"Segundo o Censo 2024, qual era a população residente de Angola?",
+o:[
+"36 604 681",
+"25 000 000",
+"40 000 000",
+"18 000 000"
+],
+a:0,
+e:"O Censo 2024 registou 36 604 681 habitantes."
+}
+],
+
+iims:[
+{
+q:"O que significa IIMS?",
+o:[
+"Inquérito de Indicadores Múltiplos e de Saúde",
+"Instituto Internacional de Medicina Social",
+"Índice Integrado de Medicina Sanitária",
+"Inquérito Internacional de Medicina"
+],
+a:0,
+e:"IIMS significa Inquérito de Indicadores Múltiplos e de Saúde."
+}
+],
+
+ia:[
+{
+q:"O que significa IA?",
+o:[
+"Informação Administrativa",
+"Inteligência Artificial",
+"Internet Avançada",
+"Inteligência Analógica"
+],
+a:1,
+e:"IA significa Inteligência Artificial."
+}
+],
+
+minint:[
+{
+q:"O MININT é o Ministério responsável por áreas ligadas à:",
+o:[
+"Administração interna e segurança pública",
+"Agricultura",
+"Educação infantil",
+"Comércio internacional"
+],
+a:0,
+e:"O MININT atua em áreas relacionadas à administração interna e segurança pública."
+}
+]
+
+};
+
+
+let atual="";
+let numero=0;
+let respondeu=false;
+
+
+function esconderTudo(){
 
 document.getElementById("inicio").style.display="none";
+document.getElementById("minsa").style.display="none";
+document.getElementById("minint").style.display="none";
+document.getElementById("quiz").style.display="none";
 
-if(
-    atual==="analises" ||
-    atual==="enfermagem" ||
-    atual==="farmacia" ||
-    atual==="fisioterapia" ||
-    atual==="maqueiro" ||
-    atual==="secretariado" ||
-    atual==="cultura" ||
-    atual==="etica" ||
-    atual==="divisao" ||
-    atual==="censo" ||
-    atual==="iims" ||
-    atual==="ia"
-){
-    document.getElementById("minsa").classList.add("active");
+}
+
+
+function abrirMinsa(){
+
+esconderTudo();
+
+document.getElementById("minsa").style.display="block";
+
+}
+
+
+function abrirMinint(){
+
+esconderTudo();
+
+document.getElementById("minint").style.display="block";
+
+}
+
+
+function inicio(){
+
+esconderTudo();
+
+document.getElementById("inicio").style.display="block";
+
+}
+
+
+function abrirQuiz(tipo){
+
+if(!banco[tipo]){
+
+alert("Simulado não encontrado.");
+
+return;
+
+}
+
+atual=tipo;
+
+numero=0;
+
+respondeu=false;
+
+esconderTudo();
+
+document.getElementById("quiz").style.display="block";
+
+mostrarQuestao();
+
+}
+
+
+function mostrarQuestao(){
+
+let lista=banco[atual];
+
+let q=lista[numero];
+
+document.getElementById("titulo").innerText=
+"Simulado: "+atual;
+
+document.getElementById("contador").innerText=
+"Questão "+(numero+1)+" de "+lista.length;
+
+document.getElementById("pergunta").innerText=q.q;
+
+document.getElementById("explicacao").style.display="none";
+
+let area=document.getElementById("opcoes");
+
+area.innerHTML="";
+
+q.o.forEach(function(opcao,i){
+
+let botao=document.createElement("button");
+
+botao.className="option";
+
+botao.innerText=
+String.fromCharCode(65+i)+") "+opcao;
+
+botao.onclick=function(){
+
+responder(i);
+
+};
+
+area.appendChild(botao);
+
+});
+
+}
+
+
+function responder(escolha){
+
+if(respondeu){
+
+return;
+
+}
+
+respondeu=true;
+
+let q=banco[atual][numero];
+
+let botoes=document.querySelectorAll(".option");
+
+botoes.forEach(function(botao,i){
+
+botao.disabled=true;
+
+if(i===q.a){
+
+botao.classList.add("correct");
+
+}
+
+if(i===escolha && escolha!==q.a){
+
+botao.classList.add("wrong");
+
+}
+
+});
+
+document.getElementById("explicacao").innerText=
+"💡 "+q.e;
+
+document.getElementById("explicacao").style.display="block";
+
+}
+
+
+function proxima(){
+
+let lista=banco[atual];
+
+if(!respondeu){
+
+alert("Escolha uma resposta antes de continuar.");
+
+return;
+
+}
+
+if(numero<lista.length-1){
+
+numero++;
+
+respondeu=false;
+
+mostrarQuestao();
+
 }else{
-    document.getElementById("minint").classList.add("active");
+
+alert("Simulado concluído!");
+
+voltarMenu();
+
+}
+
+}
+
+
+function voltarMenu(){
+
+esconderTudo();
+
+if(atual==="minint"){
+
+document.getElementById("minint").style.display="block";
+
+}else{
+
+document.getElementById("minsa").style.display="block";
+
 }
 
 }
@@ -26,4 +667,4 @@ if(
 </script>
 
 </body>
-</html>ElementById("expl
+    </html>
