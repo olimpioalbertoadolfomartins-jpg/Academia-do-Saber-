@@ -3,453 +3,760 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Academia Concurso Angola</title>
+<title>Academia do Saber O.Martins</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
-    font-family:Arial,sans-serif;
-    background:#f1f5f9;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
     color:#172033;
 }
 
 header{
-    background:#075985;
+    background:linear-gradient(135deg,#064e3b,#075985);
     color:white;
     text-align:center;
-    padding:25px 15px;
+    padding:28px 15px;
 }
 
 header h1{
-    margin:0 0 8px;
+    margin:0;
+    font-size:28px;
+}
+
+header p{
+    margin:8px 0 0;
+    font-size:16px;
 }
 
 .container{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
     padding:20px;
 }
 
-h2{
-    margin-top:10px;
-}
-
-.categorias{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:15px;
-    margin-top:20px;
-}
-
-.categoria{
-    border:0;
-    border-radius:12px;
-    padding:20px 10px;
+.card{
     background:white;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
-    font-size:16px;
-    font-weight:bold;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+button{
+    font-family:inherit;
+}
+
+.main-btn{
+    border:0;
+    border-radius:14px;
+    padding:25px 15px;
+    background:white;
+    box-shadow:0 3px 12px rgba(0,0,0,.09);
     cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+    transition:.2s;
 }
 
-.categoria:hover{
-    background:#e0f2fe;
+.main-btn:hover{
+    transform:translateY(-3px);
+    background:#ecfdf5;
 }
 
-.icone{
+.icon{
     display:block;
-    font-size:35px;
+    font-size:40px;
     margin-bottom:10px;
 }
 
-#simulado{
+.submenu{
     display:none;
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    margin-top:20px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
 }
 
-#pergunta{
-    font-size:20px;
+.submenu.active{
+    display:block;
+}
+
+.back{
+    border:0;
+    background:#e2e8f0;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:18px;
     font-weight:bold;
+}
+
+.course{
+    border:0;
+    width:100%;
+    padding:17px;
+    margin:7px 0;
+    border-radius:10px;
+    background:#f8fafc;
+    text-align:left;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    border:1px solid #e2e8f0;
+}
+
+.course:hover{
+    background:#e0f2fe;
+}
+
+.quiz{
+    display:none;
+}
+
+.question{
+    font-size:21px;
+    font-weight:bold;
+    line-height:1.5;
     margin:20px 0;
 }
 
-.opcao{
+.option{
     display:block;
     width:100%;
-    padding:14px;
-    margin:10px 0;
+    padding:15px;
+    margin:9px 0;
+    border:2px solid #dce3ea;
+    border-radius:10px;
     background:white;
-    border:2px solid #ddd;
-    border-radius:8px;
+    cursor:pointer;
     text-align:left;
     font-size:16px;
-    cursor:pointer;
 }
 
-.opcao:hover{
+.option:hover{
     background:#f0f9ff;
 }
 
-.certa{
-    background:#dcfce7 !important;
-    border-color:#16a34a !important;
+.correct{
+    background:#dcfce7!important;
+    border-color:#16a34a!important;
 }
 
-.errada{
-    background:#fee2e2 !important;
-    border-color:#dc2626 !important;
+.wrong{
+    background:#fee2e2!important;
+    border-color:#dc2626!important;
 }
 
-#explicacao{
+.explanation{
     display:none;
+    padding:14px;
     margin-top:15px;
-    padding:12px;
-    background:#f8fafc;
-    border-left:4px solid #075985;
+    background:#f1f5f9;
+    border-left:5px solid #075985;
+    line-height:1.5;
+    border-radius:5px;
 }
 
-.botoes{
+.actions{
     display:flex;
     gap:10px;
+    flex-wrap:wrap;
     margin-top:20px;
 }
 
-.btn{
+.action{
     border:0;
     padding:12px 18px;
-    border-radius:8px;
+    border-radius:9px;
     cursor:pointer;
     font-weight:bold;
 }
 
-.proxima{
+.next{
     background:#075985;
     color:white;
 }
 
-.voltar{
+.home{
     background:#e2e8f0;
 }
 
-#resultado{
+.result{
     display:none;
-    background:white;
-    padding:30px;
     text-align:center;
-    border-radius:12px;
-    margin-top:20px;
 }
 
-.pontuacao{
-    font-size:40px;
+.score{
+    font-size:42px;
     font-weight:bold;
     color:#075985;
+    margin:15px;
 }
 
+.badge{
+    display:inline-block;
+    background:#e0f2fe;
+    color:#075985;
+    padding:7px 12px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.progress{
+    height:8px;
+    background:#e5e7eb;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#059669;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    background:#172033;
+    color:white;
+    margin-top:30px;
+    line-height:1.6;
+}
+
+@media(max-width:600px){
+    header h1{font-size:23px}
+    .container{padding:12px}
+    .question{font-size:18px}
+    .option{font-size:15px}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-
-<h1>🎓 Academia Concurso Angola</h1>
-
-<p>Preparação para concursos e conhecimentos gerais</p>
-
+<h1>🎓 Academia do Saber O.Martins</h1>
+<p>Concursos Públicos — Angola</p>
 </header>
-
 
 <div class="container">
 
-<!-- MENU -->
+<!-- INÍCIO -->
 
-<div id="inicio">
+<section id="inicio" class="card">
 
-<h2>Escolha uma categoria</h2>
+<h2>Escolha o concurso</h2>
 
-<div class="categorias">
+<div class="menu">
 
-<button class="categoria" onclick="iniciar('analises')">
-<span class="icone">🧪</span>
-Análises Clínicas
+<button class="main-btn" onclick="abrir('minsa')">
+<span class="icon">🏥</span>
+MINSA
+<small>Ministério da Saúde</small>
 </button>
 
-<button class="categoria" onclick="iniciar('cultura')">
-<span class="icone">🌍</span>
-Cultura Geral
-</button>
-
-<button class="categoria" onclick="iniciar('etica')">
-<span class="icone">⚖️</span>
-Ética
-</button>
-
-<button class="categoria" onclick="iniciar('censo')">
-<span class="icone">📊</span>
-Censo 2024
-</button>
-
-<button class="categoria" onclick="iniciar('iims')">
-<span class="icone">🏥</span>
-IIMS
-</button>
-
-<button class="categoria" onclick="iniciar('ia')">
-<span class="icone">🤖</span>
-Inteligência Artificial
+<button class="main-btn" onclick="abrir('minint')">
+<span class="icon">🛡️</span>
+MININT
+<small>Ministério do Interior</small>
 </button>
 
 </div>
 
+</section>
+
+
+<!-- MINSA -->
+
+<section id="minsa" class="card submenu">
+
+<button class="back" onclick="inicio()">← Voltar</button>
+
+<h2>🏥 MINSA — Ministério da Saúde</h2>
+
+<p>Escolha o curso ou tema de preparação.</p>
+
+<button class="course" onclick="simulado('analises')">
+🧪 Análises Clínicas
+</button>
+
+<button class="course" onclick="simulado('enfermagem')">
+👩‍⚕️ Enfermagem
+</button>
+
+<button class="course" onclick="simulado('farmacia')">
+💊 Farmácia
+</button>
+
+<button class="course" onclick="simulado('fisioterapia')">
+🦴 Fisioterapia
+</button>
+
+<button class="course" onclick="simulado('maqueiro')">
+🚑 Maqueiro
+</button>
+
+<button class="course" onclick="simulado('secretariado')">
+📋 Secretariado Clínico
+</button>
+
+<hr>
+
+<h3>📚 Temas gerais</h3>
+
+<button class="course" onclick="simulado('cultura')">
+🌍 Cultura Geral
+</button>
+
+<button class="course" onclick="simulado('etica')">
+⚖️ Ética e Deontologia
+</button>
+
+<button class="course" onclick="simulado('divisao')">
+🗺️ Nova Divisão Política de Angola
+</button>
+
+<button class="course" onclick="simulado('censo')">
+📊 Censo 2024 — Angola
+</button>
+
+<button class="course" onclick="simulado('iims')">
+🏥 IIMS 2023–2024
+</button>
+
+<button class="course" onclick="simulado('ia')">
+🤖 Inteligência Artificial aplicada à Saúde
+</button>
+
+</section>
+
+
+<!-- MININT -->
+
+<section id="minint" class="card submenu">
+
+<button class="back" onclick="inicio()">← Voltar</button>
+
+<h2>🛡️ MININT — Ministério do Interior</h2>
+
+<p>
+Área exclusiva para preparação do concurso do MININT.
+</p>
+
+<button class="course" onclick="simulado('minint')">
+📝 Simulado Geral do MININT
+</button>
+
+<div style="
+margin-top:15px;
+padding:15px;
+background:#fff7ed;
+border-left:5px solid #f97316;
+border-radius:6px;
+">
+<strong>Importante:</strong><br>
+Os conteúdos específicos do MININT serão acrescentados
+separadamente, sem misturar as matérias do MINSA.
 </div>
+
+</section>
 
 
 <!-- SIMULADO -->
 
-<div id="simulado">
+<section id="quiz" class="card quiz">
 
-<strong id="categoria"></strong>
+<button class="back" onclick="voltarMenu()">← Voltar</button>
 
-<div id="contador"></div>
+<div class="badge" id="tituloQuiz"></div>
 
-<div id="pergunta"></div>
+<p id="contador"></p>
+
+<div class="progress">
+<div class="progress-bar" id="barra"></div>
+</div>
+
+<div class="question" id="pergunta"></div>
 
 <div id="opcoes"></div>
 
-<div id="explicacao"></div>
+<div class="explanation" id="explicacao"></div>
 
-<div class="botoes">
+<div class="actions">
 
-<button class="btn voltar" onclick="voltar()">
-Voltar
+<button class="action next" onclick="proxima()">
+Próxima →
 </button>
 
-<button class="btn proxima" onclick="proxima()">
-Próxima
+<button class="action home" onclick="voltarMenu()">
+Categorias
 </button>
 
 </div>
 
-</div>
+</section>
 
 
 <!-- RESULTADO -->
 
-<div id="resultado">
+<section id="resultado" class="card result">
 
-<h2>Simulado terminado!</h2>
+<h2>🎉 Simulado concluído!</h2>
 
-<div class="pontuacao" id="pontuacao"></div>
+<div class="score" id="score"></div>
 
 <p id="mensagem"></p>
 
-<button class="btn proxima" onclick="inicio()">
-Voltar às categorias
+<div class="actions" style="justify-content:center">
+
+<button class="action next" onclick="refazer()">
+🔄 Refazer
+</button>
+
+<button class="action home" onclick="inicio()">
+🏠 Início
 </button>
 
 </div>
 
+</section>
+
 </div>
+
+
+<footer>
+
+<strong>Academia do Saber O.Martins</strong><br>
+Concursos Públicos — Angola
+
+<br><br>
+
+Pequena versão inicial do banco de questões.
+<br>
+Os bancos serão ampliados progressivamente.
+
+</footer>
 
 
 <script>
 
-/* ================================
-   BANCO DE PERGUNTAS
-================================ */
+/* =====================================================
+   BANCO INICIAL
+===================================================== */
 
-const perguntas = {
+const banco = {
 
 analises:[
-
 {
-pergunta:"Qual é a principal função dos eritrócitos?",
-opcoes:[
-"Transportar oxigénio",
-"Produzir anticorpos",
-"Produzir plaquetas",
-"Destruir bactérias"
-],
-resposta:0,
-explicacao:"Os eritrócitos transportam principalmente oxigénio através da hemoglobina."
+q:"Qual é a principal função dos eritrócitos?",
+o:["Transportar oxigénio","Produzir anticorpos","Produzir plaquetas","Destruir bactérias"],
+a:0,
+e:"Os eritrócitos transportam oxigénio principalmente através da hemoglobina."
 },
-
 {
-pergunta:"Qual célula participa principalmente na defesa do organismo?",
-opcoes:[
-"Eritrócito",
-"Leucócito",
-"Plaqueta",
-"Reticulócito"
-],
-resposta:1,
-explicacao:"Os leucócitos participam nas respostas imunológicas e na defesa do organismo."
+q:"Qual célula participa principalmente da defesa do organismo?",
+o:["Eritrócito","Leucócito","Plaqueta","Reticulócito"],
+a:1,
+e:"Os leucócitos participam da defesa imunológica do organismo."
 },
-
 {
-pergunta:"Qual exame avalia os elementos celulares do sangue?",
-opcoes:[
-"Hemograma",
-"Urinálise",
-"Coprologia",
-"Espermatograma"
-],
-resposta:0,
-explicacao:"O hemograma avalia principalmente eritrócitos, leucócitos e plaquetas."
+q:"Qual exame avalia os principais elementos celulares do sangue?",
+o:["Hemograma","Urinálise","Coprologia","Espermograma"],
+a:0,
+e:"O hemograma avalia principalmente eritrócitos, leucócitos e plaquetas."
+},
+{
+q:"Qual é a principal função das plaquetas?",
+o:["Participar da hemostasia","Transportar oxigénio","Produzir anticorpos","Produzir glicose"],
+a:0,
+e:"As plaquetas participam da hemostasia e da formação do tampão plaquetário."
 }
+],
 
+enfermagem:[
+{
+q:"Qual é uma função fundamental da enfermagem?",
+o:["Prestar cuidados de saúde","Emitir moeda","Administrar bancos","Construir estradas"],
+a:0,
+e:"A enfermagem participa da promoção, prevenção, recuperação e cuidados de saúde."
+},
+{
+q:"A lavagem adequada das mãos ajuda principalmente a:",
+o:["Reduzir a transmissão de microrganismos","Aumentar a pressão arterial","Produzir hemoglobina","Substituir medicamentos"],
+a:0,
+e:"A higiene das mãos é uma das principais medidas de prevenção e controlo de infecções."
+}
+],
+
+farmacia:[
+{
+q:"Qual é uma das funções de um profissional de farmácia?",
+o:["Dispensar medicamentos de forma adequada","Fazer obras públicas","Emitir documentos de identidade","Controlar eleições"],
+a:0,
+e:"A dispensa segura e adequada de medicamentos é uma importante atividade farmacêutica."
+},
+{
+q:"O que é uma reação adversa a medicamento?",
+o:["Uma resposta nociva e não intencional associada ao uso de um medicamento","Uma receita médica","Uma embalagem","Uma vitamina"],
+a:0,
+e:"Reação adversa é uma resposta nociva e não intencional associada ao uso de um medicamento."
+}
+],
+
+fisioterapia:[
+{
+q:"A fisioterapia atua principalmente na:",
+o:["Promoção e recuperação do movimento e função","Produção de sangue","Fabricação de vacinas","Emissão de documentos"],
+a:0,
+e:"A fisioterapia atua na prevenção, avaliação e reabilitação de alterações do movimento e função."
+},
+{
+q:"Um dos objetivos da reabilitação é:",
+o:["Melhorar a funcionalidade do paciente","Eliminar todos os exames laboratoriais","Produzir medicamentos","Substituir todas as cirurgias"],
+a:0,
+e:"A reabilitação procura melhorar a funcionalidade, independência e qualidade de vida."
+}
+],
+
+maqueiro:[
+{
+q:"Uma responsabilidade importante do maqueiro hospitalar é:",
+o:["Transportar pacientes com segurança","Prescrever medicamentos","Interpretar hemogramas","Emitir diagnósticos médicos"],
+a:0,
+e:"O transporte seguro de pacientes é uma das funções importantes do maqueiro."
+},
+{
+q:"Durante o transporte de um paciente, deve-se:",
+o:["Garantir segurança e estabilidade do paciente","Deixar o paciente sozinho","Ignorar o estado clínico","Retirar todos os dispositivos"],
+a:0,
+e:"A segurança do paciente deve ser preservada durante todo o transporte."
+}
+],
+
+secretariado:[
+{
+q:"O sigilo é importante no secretariado clínico porque:",
+o:["Protege informações dos pacientes","Permite divulgar prontuários","Elimina documentos","Substitui médicos"],
+a:0,
+e:"O secretariado clínico lida com informações que podem ser confidenciais."
+},
+{
+q:"Um secretário clínico deve:",
+o:["Organizar informações e atender os utentes com profissionalismo","Alterar resultados laboratoriais","Prescrever medicamentos","Fazer diagnósticos"],
+a:0,
+e:"Organização, atendimento e proteção das informações são aspectos importantes da função."
+}
 ],
 
 cultura:[
-
 {
-pergunta:"Qual é a capital de Angola?",
-opcoes:[
-"Luanda",
-"Lubango",
-"Huambo",
-"Benguela"
-],
-resposta:0,
-explicacao:"Luanda é a capital de Angola."
+q:"Qual é a capital de Angola?",
+o:["Luanda","Lubango","Huambo","Benguela"],
+a:0,
+e:"Luanda é a capital de Angola."
 },
-
 {
-pergunta:"Qual é a moeda oficial de Angola?",
-opcoes:[
-"Metical",
-"Kwanza",
-"Rand",
-"Euro"
-],
-resposta:1,
-explicacao:"O Kwanza é a moeda oficial de Angola."
+q:"Qual é a moeda oficial de Angola?",
+o:["Kwanza","Metical","Rand","Euro"],
+a:0,
+e:"A moeda oficial de Angola é o Kwanza."
 }
-
 ],
 
 etica:[
-
 {
-pergunta:"O que significa sigilo profissional?",
-opcoes:[
-"Divulgar informações dos pacientes",
-"Proteger informações confidenciais",
-"Publicar resultados laboratoriais",
-"Partilhar informações com qualquer pessoa"
-],
-resposta:1,
-explicacao:"O sigilo profissional exige proteção das informações confidenciais obtidas no exercício profissional."
+q:"O que significa sigilo profissional?",
+o:["Proteger informações confidenciais","Divulgar dados dos pacientes","Publicar prontuários","Partilhar informações com qualquer pessoa"],
+a:0,
+e:"O sigilo profissional exige proteção das informações confidenciais obtidas no exercício profissional."
 },
-
 {
-pergunta:"A ética profissional orienta principalmente:",
-opcoes:[
-"A conduta do profissional",
-"O preço dos medicamentos",
-"A decoração do laboratório",
-"A publicidade"
-],
-resposta:0,
-explicacao:"A ética profissional ajuda a orientar decisões e comportamentos responsáveis."
+q:"A ética profissional orienta principalmente:",
+o:["A conduta profissional","A decoração do serviço","O preço dos produtos","A publicidade"],
+a:0,
+e:"A ética orienta comportamentos e decisões responsáveis no exercício profissional."
 }
+],
 
+divisao:[
+{
+q:"Segundo a nova Divisão Político-Administrativa de Angola, quantas províncias existem?",
+o:["18","21","24","26"],
+a:1,
+e:"A nova organização territorial de Angola passou a compreender 21 províncias."
+},
+{
+q:"Quantos municípios existem segundo a nova Divisão Político-Administrativa?",
+o:["164","246","326","378"],
+a:2,
+e:"A nova organização territorial compreende 326 municípios."
+},
+{
+q:"Quantas comunas existem segundo a nova Divisão Político-Administrativa?",
+o:["326","350","378","400"],
+a:2,
+e:"A nova organização territorial compreende 378 comunas."
+}
 ],
 
 censo:[
-
 {
-pergunta:"Segundo o Censo 2024, qual era a população residente de Angola?",
-opcoes:[
-"36 604 681",
-"20 000 000",
-"50 000 000",
-"15 000 000"
-],
-resposta:0,
-explicacao:"Segundo os resultados definitivos do Censo 2024, Angola tinha 36 604 681 habitantes."
+q:"Segundo os resultados definitivos do Censo 2024, qual era a população residente de Angola?",
+o:["36 604 681","25 000 000","40 000 000","18 000 000"],
+a:0,
+e:"O Censo 2024 registou 36 604 681 habitantes em Angola."
+},
+{
+q:"Segundo o Censo 2024, aproximadamente que percentagem da população vivia em áreas urbanas?",
+o:["35,5%","50,0%","65,5%","80,0%"],
+a:2,
+e:"Os resultados definitivos indicam aproximadamente 65,5% da população residente em áreas urbanas."
 }
-
 ],
 
 iims:[
-
 {
-pergunta:"O que significa IIMS?",
-opcoes:[
-"Inquérito de Indicadores Múltiplos e de Saúde",
-"Instituto Internacional de Medicina Social",
-"Índice Integrado de Medicina Sanitária",
-"Inquérito Internacional de Medicina"
-],
-resposta:0,
-explicacao:"IIMS significa Inquérito de Indicadores Múltiplos e de Saúde."
+q:"O que significa IIMS?",
+o:["Inquérito de Indicadores Múltiplos e de Saúde","Instituto Internacional de Medicina Social","Índice Integrado de Medicina Sanitária","Inquérito Internacional de Medicina"],
+a:0,
+e:"IIMS significa Inquérito de Indicadores Múltiplos e de Saúde."
+},
+{
+q:"O IIMS 2023–2024 aborda principalmente:",
+o:["Indicadores sociais, demográficos e de saúde","Somente futebol","Somente agricultura","Somente transportes"],
+a:0,
+e:"O IIMS reúne vários indicadores sociais, demográficos e de saúde."
 }
-
 ],
 
 ia:[
-
 {
-pergunta:"O que significa IA?",
-opcoes:[
-"Informação Administrativa",
-"Inteligência Artificial",
-"Internet Avançada",
-"Inteligência Analógica"
-],
-resposta:1,
-explicacao:"IA significa Inteligência Artificial."
+q:"O que significa IA?",
+o:["Informação Administrativa","Inteligência Artificial","Internet Avançada","Inteligência Analógica"],
+a:1,
+e:"IA significa Inteligência Artificial."
 },
-
 {
-pergunta:"Por que devemos verificar informações produzidas por uma IA?",
-opcoes:[
-"Porque uma IA pode cometer erros",
-"Porque IA nunca funciona",
-"Porque computadores não usam dados",
-"Porque toda IA é falsa"
-],
-resposta:0,
-explicacao:"Sistemas de IA podem produzir informações incorretas ou inadequadas, por isso a verificação humana é importante."
+q:"Na saúde, a IA pode ser utilizada para:",
+o:["Apoiar análise de dados e processos clínicos","Substituir automaticamente todos os profissionais","Eliminar exames","Eliminar protocolos"],
+a:0,
+e:"A IA pode apoiar profissionais na análise de dados, investigação e diversos processos clínicos."
+},
+{
+q:"Por que uma informação produzida por IA deve ser verificada?",
+o:["Porque a IA pode cometer erros","Porque a IA nunca funciona","Porque computadores não usam dados","Porque toda IA é falsa"],
+a:0,
+e:"Sistemas de IA podem produzir informações incorretas, portanto a verificação humana é importante."
 }
+],
 
+minint:[
+{
+q:"O MININT é o Ministério responsável por áreas ligadas à:",
+o:["Administração interna e segurança pública","Agricultura","Educação infantil","Comércio internacional"],
+a:0,
+e:"O MININT atua em áreas relacionadas à administração interna e segurança pública, de acordo com as suas atribuições legais."
+},
+{
+q:"Na preparação para um concurso público, é importante:",
+o:["Estudar legislação, conhecimentos gerais e os conteúdos específicos do cargo","Estudar apenas cultura geral","Ignorar a legislação","Memorizar respostas sem compreender"],
+a:0,
+e:"A preparação eficaz combina conhecimento específico, legislação aplicável e conhecimentos gerais."
+}
 ]
 
 };
 
 
-/* ================================
-   VARIÁVEIS
-================================ */
+/* =====================================================
+   NOMES
+===================================================== */
 
-let categoriaAtual="";
-let lista=[];
+const nomes={
+analises:"🧪 Análises Clínicas",
+enfermagem:"👩‍⚕️ Enfermagem",
+farmacia:"💊 Farmácia",
+fisioterapia:"🦴 Fisioterapia",
+maqueiro:"🚑 Maqueiro",
+secretariado:"📋 Secretariado Clínico",
+cultura:"🌍 Cultura Geral",
+etica:"⚖️ Ética e Deontologia",
+divisao:"🗺️ Nova Divisão Política",
+censo:"📊 Censo 2024",
+iims:"🏥 IIMS 2023–2024",
+ia:"🤖 IA aplicada à Saúde",
+minint:"🛡️ MININT"
+};
+
+
+/* =====================================================
+   VARIÁVEIS
+===================================================== */
+
+let atual="";
+let perguntas=[];
 let numero=0;
 let pontos=0;
 let respondeu=false;
 
 
-/* ================================
-   INICIAR
-================================ */
+/* =====================================================
+   ABRIR MENU
+===================================================== */
 
-function iniciar(categoria){
+function abrir(menu){
 
-categoriaAtual=categoria;
+document.getElementById("inicio").style.display="none";
 
-lista=perguntas[categoria];
+document.getElementById("minsa").classList.remove("active");
+
+document.getElementById("minint").classList.remove("active");
+
+document.getElementById(menu).classList.add("active");
+
+}
+
+
+/* =====================================================
+   INÍCIO
+===================================================== */
+
+function inicio(){
+
+document.getElementById("inicio").style.display="block";
+
+document.getElementById("minsa").classList.remove("active");
+
+document.getElementById("minint").classList.remove("active");
+
+document.getElementById("quiz").style.display="none";
+
+document.getElementById("resultado").style.display="none";
+
+}
+
+
+/* =====================================================
+   SIMULADO
+===================================================== */
+
+function simulado(tipo){
+
+atual=tipo;
+
+perguntas=banco[tipo];
 
 numero=0;
 
@@ -457,33 +764,36 @@ pontos=0;
 
 respondeu=false;
 
-document.getElementById("inicio").style.display="none";
+document.getElementById("minsa").classList.remove("active");
+
+document.getElementById("minint").classList.remove("active");
+
+document.getElementById("quiz").style.display="block";
 
 document.getElementById("resultado").style.display="none";
 
-document.getElementById("simulado").style.display="block";
-
-document.getElementById("categoria").innerText=
-"Categoria: "+categoria;
+document.getElementById("tituloQuiz").innerText=nomes[tipo];
 
 mostrar();
 
 }
 
 
-/* ================================
-   MOSTRAR PERGUNTA
-================================ */
+/* =====================================================
+   MOSTRAR
+===================================================== */
 
 function mostrar(){
 
-let atual=lista[numero];
+let p=perguntas[numero];
 
 document.getElementById("contador").innerText=
-"Questão "+(numero+1)+" de "+lista.length;
+"Questão "+(numero+1)+" de "+perguntas.length;
 
-document.getElementById("pergunta").innerText=
-atual.pergunta;
+document.getElementById("pergunta").innerText=p.q;
+
+document.getElementById("barra").style.width=
+(((numero+1)/perguntas.length)*100)+"%";
 
 let area=document.getElementById("opcoes");
 
@@ -491,97 +801,90 @@ area.innerHTML="";
 
 document.getElementById("explicacao").style.display="none";
 
-atual.opcoes.forEach(function(opcao,index){
+p.o.forEach(function(texto,i){
 
-let botao=document.createElement("button");
+let b=document.createElement("button");
 
-botao.className="opcao";
+b.className="option";
 
-botao.innerText=
-String.fromCharCode(65+index)+") "+opcao;
+b.innerText=
+String.fromCharCode(65+i)+") "+texto;
 
-botao.onclick=function(){
+b.onclick=function(){
 
-responder(index);
+responder(i);
 
 };
 
-area.appendChild(botao);
+area.appendChild(b);
 
 });
 
 }
 
 
-/* ================================
+/* =====================================================
    RESPONDER
-================================ */
+===================================================== */
 
 function responder(escolha){
 
-if(respondeu){
-return;
-}
+if(respondeu)return;
 
 respondeu=true;
 
-let atual=lista[numero];
+let p=perguntas[numero];
 
-let botoes=
-document.querySelectorAll(".opcao");
+let botoes=document.querySelectorAll(".option");
 
-botoes.forEach(function(botao,index){
+botoes.forEach(function(b,i){
 
-botao.disabled=true;
+b.disabled=true;
 
-if(index===atual.resposta){
+if(i===p.a){
 
-botao.classList.add("certa");
+b.classList.add("correct");
 
 }
 
-if(index===escolha && escolha!==atual.resposta){
+if(i===escolha && escolha!==p.a){
 
-botao.classList.add("errada");
+b.classList.add("wrong");
 
 }
 
 });
 
-
-if(escolha===atual.resposta){
+if(escolha===p.a){
 
 pontos++;
 
 }
 
+let exp=document.getElementById("explicacao");
 
-let explicacao=
-document.getElementById("explicacao");
+exp.innerText="💡 "+p.e;
 
-explicacao.innerText=
-"💡 "+atual.explicacao;
-
-explicacao.style.display="block";
+exp.style.display="block";
 
 }
 
 
-/* ================================
+/* =====================================================
    PRÓXIMA
-================================ */
+===================================================== */
 
 function proxima(){
 
 if(!respondeu){
 
-alert("Escolha uma resposta primeiro.");
+alert("Escolha uma resposta antes de continuar.");
 
 return;
 
 }
 
-if(numero<lista.length-1){
+if(numero<perguntas.length-1){
 
 numero++;
 
@@ -598,70 +901,68 @@ finalizar();
 }
 
 
-/* ================================
-   VOLTAR
-================================ */
-
-function voltar(){
-
-document.getElementById("simulado").style.display="none";
-
-document.getElementById("inicio").style.display="block";
-
-}
-
-
-/* ================================
+/* =====================================================
    FINALIZAR
-================================ */
+===================================================== */
 
 function finalizar(){
 
-document.getElementById("simulado").style.display="none";
+document.getElementById("quiz").style.display="none";
 
 document.getElementById("resultado").style.display="block";
 
-let total=lista.length;
-
 let percentagem=
-Math.round((pontos/total)*100);
+Math.round((pontos/perguntas.length)*100);
 
-document.getElementById("pontuacao").innerText=
-pontos+" / "+total+" ("+percentagem+"%)";
+document.getElementById("score").innerText=
+pontos+" / "+perguntas.length+" — "+percentagem+"%";
 
-if(percentagem>=80){
+let msg="";
 
-document.getElementById("mensagem").innerText=
-"Excelente desempenho!";
+if(percentagem>=90){
+
+msg="🏆 Excelente desempenho!";
+
+}else if(percentagem>=75){
+
+msg="👏 Muito bom! Continue a aperfeiçoar os seus conhecimentos.";
 
 }else if(percentagem>=60){
 
-document.getElementById("mensagem").innerText=
-"Bom desempenho. Continue a estudar.";
+msg="👍 Bom desempenho. Reforce os conteúdos em que teve dificuldade.";
 
 }else{
 
-document.getElementById("mensagem").innerText=
-"Precisa reforçar os estudos e tentar novamente.";
+msg="📚 Continue a estudar e tente novamente.";
 
 }
 
+document.getElementById("mensagem").innerText=msg;
+
 }
 
 
-/* ================================
-   INÍCIO
-================================ */
+/* =====================================================
+   REFAZER
+===================================================== */
 
-function inicio(){
+function refazer(){
+
+simulado(atual);
+
+}
+
+
+/* =====================================================
+   VOLTAR AO MENU
+===================================================== */
+
+function voltarMenu(){
+
+document.getElementById("quiz").style.display="none";
 
 document.getElementById("resultado").style.display="none";
 
-document.getElementById("inicio").style.display="block";
+document.getElementById("minsa").classList.remove("active");
 
-}
-
-</script>
-
-</body>
-</html>
+doc
